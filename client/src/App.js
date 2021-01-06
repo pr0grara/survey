@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
+import { fetchFlower } from "./util/api/flower_api_util.js"
 class App extends Component {
   constructor(props) {
     super(props);
@@ -9,11 +10,13 @@ class App extends Component {
     this.getFlower();
   }
   getFlower() {
-    fetch("/flower")
-      .then((response) => response.json())
-      .then((data) => {
+    // fetch("/flower")
+    fetchFlower()
+      // .then((res) => console.log(res.data))
+      // .then((res) => res.json())
+      .then((res) => {
         this.setState({
-          flower: data,
+          flower: res.data,
         });
       });
   }
@@ -21,7 +24,7 @@ class App extends Component {
     return (
       <div className="App">
         <h1>{this.state.flower.name}</h1>
-        <p>{this.state.flower.colour}</p>
+        <p>{this.state.flower.color}</p>
       </div>
     );
   }

@@ -1,5 +1,6 @@
 import path from "path";
 import express from "express";
+import sms from "./routes/flowers.js";
 
 const PORT = process.env.HTTP_PORT || 4001;
 const app = express();
@@ -10,9 +11,10 @@ app.get("/", (req, res) => {
 app.get("/flower", (req, res) => {
   res.json({
     name: "Dandelion",
-    colour: "Blue-ish",
+    color: "Blue-ish",
   });
 });
+app.use('/flowers', sms)
 app.listen(PORT, () => {
   console.log(`Server listening at port ${PORT}.`);
 });
